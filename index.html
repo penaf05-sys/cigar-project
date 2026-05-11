@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversations Over Cigars</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1a1008;
+            background-image: 
+                radial-gradient(ellipse at top, #2c1a0e 0%, #1a1008 60%);
+            color: #e8d5b0;
+            font-family: 'Lato', sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: #c9a84c;
+            letter-spacing: 2px;
+            text-shadow: 0 2px 10px rgba(201, 168, 76, 0.3);
+        }
+
+        header p {
+            margin-top: 10px;
+            font-size: 1rem;
+            color: #a08060;
+            letter-spacing: 1px;
+            font-weight: 300;
+        }
+
+        .divider {
+            width: 80px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #c9a84c, transparent);
+            margin: 16px auto 0;
+        }
+
+        /* Cigar Cards */
+        .cigar-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .cigar-card {
+            background: linear-gradient(145deg, #2c1a0e, #1f1208);
+            border: 1px solid #3d2410;
+            border-radius: 12px;
+            padding: 24px 28px;
+            width: 220px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cigar-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, #c9a84c, transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .cigar-card:hover {
+            border-color: #c9a84c;
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.1);
+        }
+
+        .cigar-card:hover::before {
+            opacity: 1;
+        }
+
+        .cigar-card.active {
+            border-color: #c9a84c;
+            box-shadow: 0 0 25px rgba(201,168,76,0.2);
+        }
+
+        .cigar-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .cigar-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: #c9a84c;
+            margin-bottom: 8px;
+        }
+
+        .cigar-meta {
+            font-size: 0.78rem;
+            color: #7a5c3a;
+            line-height: 1.8;
+            letter-spacing: 0.5px;
+        }
+
+        .cigar-meta span {
+            display: block;
+        }
+
+        .strength-badge {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 400;
+        }
+
+        .strength-Full {
+            background: rgba(180, 60, 30, 0.2);
+            color: #c96040;
+            border: 1px solid rgba(180, 60, 30, 0.3);
+        }
+
+        .strength-Medium {
+            background: rgba(180, 130, 40, 0.2);
+            color: #c9a84c;
+            border: 1px solid rgba(180, 130, 40, 0.3);
+        }
+
+        .strength-Mild {
+            background: rgba(80, 160, 80, 0.2);
+            color: #70c070;
+            border: 1px solid rgba(80, 160, 80, 0.3);
+        }
+
+        /* Story Section */
+        .story-section {
+            max-width: 780px;
+            margin: 0 auto;
+        }
+
+        .story-label {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            color: #7a5c3a;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        #story {
+            background: linear-gradient(145deg, #221408, #1a1008);
+            border: 1px solid #3d2410;
+            border-radius: 12px;
+            padding: 36px 40px;
+            min-height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        #story::before {
+            content: '"';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            color: rgba(201, 168, 76, 0.08);
+            line-height: 1;
+        }
+
+        #story p {
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #c8b090;
+            font-weight: 300;
+            font-style: italic;
+            text-align: center;
+            max-width: 680px;
+        }
+
+        #story p.loading {
+            color: #7a5c3a;
+            font-style: normal;
+            letter-spacing: 1px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 60px;
+            color: #4a3420;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Conversations Over Cigars</h1>
+        <p>Select a cigar and let the story begin.</p>
+        <div class="divider"></div>
+    </header>
+
+    <div class="cigar-grid">
+        <div class="cigar-card" onclick="getStory('Cohiba', 'Cuba', 'Full', 1966, this)">
+            <div class="cigar-icon">🍂</div>
+            <div class="cigar-name">Cohiba</div>
+            <div class="cigar-meta">
+                <span>🌍 Cuba</span>
+                <span>📅 Since 1966</span>
+            </div>
+            <span class="strength-badge strength-Full">Full Body</span>
+        </div>
+
+        <div class="cigar-card" onclick="getStory('Montecristo', 'Dominican Republic', 'Medium', 1935, this)">
+            <div class="cigar-icon">⚔️</div>
+            <div class="cigar-name">Montecristo</div>
+            <div class="cigar-meta">
+                <span>🌍 Dominican Republic</span>
+                <span>📅 Since 1935</span>
+            </div>
+            <span class="strength-badge strength-Medium">Medium Body</span>
+        </div>
+
+        <div class="cigar-card" onclick="getStory('La Aurora', 'Dominican Republic', 'Medium', 1903, this)">
+            <div class="cigar-icon">🌅</div>
+            <div class="cigar-name">La Aurora</div>
+            <div class="cigar-meta">
+                <span>🌍 Dominican Republic</span>
+                <span>📅 Since 1903</span>
+            </div>
+            <span class="strength-badge strength-Medium">Medium Body</span>
+        </div>
+    </div>
+
+    <div class="story-section">
+        <div class="story-label">✦ Your Story ✦</div>
+        <div id="story">
+            <p>Choose a cigar above to begin your story...</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Conversations Over Cigars &nbsp;·&nbsp; Every smoke tells a story</p>
+    </footer>
+
+    <script>
+        async function getStory(name, origin, strength, year, cardEl) {
+            // Highlight active card
+            document.querySelectorAll('.cigar-card').forEach(c => c.classList.remove('active'));
+            if (cardEl) cardEl.classList.add('active');
+
+            document.getElementById('story').innerHTML = '<p class="loading">Lighting your cigar...</p>';
+
+            const response = await fetch('http://localhost:8080/story', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name, origin, strength, year})
+            });
+
+            const data = await response.json();
+            document.getElementById('story').innerHTML = '<p>' + data.story + '</p>';
+        }
+    </script>
+
+</body>
+</html>
