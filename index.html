@@ -15,8 +15,7 @@
 
         body {
             background-color: #1a1008;
-            background-image: 
-                radial-gradient(ellipse at top, #2c1a0e 0%, #1a1008 60%);
+            background-image: radial-gradient(ellipse at top, #2c1a0e 0%, #1a1008 60%);
             color: #e8d5b0;
             font-family: 'Lato', sans-serif;
             min-height: 100vh;
@@ -51,7 +50,6 @@
             margin: 16px auto 0;
         }
 
-        /* Cigar Cards */
         .cigar-grid {
             display: flex;
             flex-wrap: wrap;
@@ -150,7 +148,6 @@
             border: 1px solid rgba(80, 160, 80, 0.3);
         }
 
-        /* Story Section */
         .story-section {
             max-width: 780px;
             margin: 0 auto;
@@ -173,6 +170,7 @@
             padding: 36px 40px;
             min-height: 180px;
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             position: relative;
@@ -211,6 +209,28 @@
             50% { opacity: 1; }
         }
 
+        .affiliate-btn {
+            display: inline-block;
+            margin-top: 24px;
+            padding: 12px 32px;
+            background: transparent;
+            border: 1px solid #c9a84c;
+            border-radius: 30px;
+            color: #c9a84c;
+            font-family: 'Lato', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .affiliate-btn:hover {
+            background: #c9a84c;
+            color: #1a1008;
+        }
+
         footer {
             text-align: center;
             margin-top: 60px;
@@ -229,7 +249,7 @@
     </header>
 
     <div class="cigar-grid">
-        <div class="cigar-card" onclick="getStory('Cohiba', 'Cuba', 'Full', 1966, this)">
+        <div class="cigar-card" onclick="getStory('Cohiba', 'Cuba', 'Full', 1966, 'https://www.famous-smoke.com/cohiba-cigars', this)">
             <div class="cigar-icon">🍂</div>
             <div class="cigar-name">Cohiba</div>
             <div class="cigar-meta">
@@ -239,7 +259,7 @@
             <span class="strength-badge strength-Full">Full Body</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Montecristo', 'Dominican Republic', 'Medium', 1935, this)">
+        <div class="cigar-card" onclick="getStory('Montecristo', 'Dominican Republic', 'Medium', 1935, 'https://www.famous-smoke.com/montecristo-cigars', this)">
             <div class="cigar-icon">⚔️</div>
             <div class="cigar-name">Montecristo</div>
             <div class="cigar-meta">
@@ -249,7 +269,7 @@
             <span class="strength-badge strength-Medium">Medium Body</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('La Aurora', 'Dominican Republic', 'Medium', 1903, this)">
+        <div class="cigar-card" onclick="getStory('La Aurora', 'Dominican Republic', 'Medium', 1903, 'https://www.famous-smoke.com/la-aurora-cigars', this)">
             <div class="cigar-icon">🌅</div>
             <div class="cigar-name">La Aurora</div>
             <div class="cigar-meta">
@@ -272,8 +292,7 @@
     </footer>
 
     <script>
-        async function getStory(name, origin, strength, year, cardEl) {
-            // Highlight active card
+        async function getStory(name, origin, strength, year, affiliateUrl, cardEl) {
             document.querySelectorAll('.cigar-card').forEach(c => c.classList.remove('active'));
             if (cardEl) cardEl.classList.add('active');
 
@@ -286,7 +305,10 @@
             });
 
             const data = await response.json();
-            document.getElementById('story').innerHTML = '<p>' + data.story + '</p>';
+            document.getElementById('story').innerHTML = `
+                <p>${data.story}</p>
+                <a class="affiliate-btn" href="${affiliateUrl}" target="_blank">Shop ${name} →</a>
+            `;
         }
     </script>
 
