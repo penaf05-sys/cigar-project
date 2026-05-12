@@ -23,11 +23,11 @@ def get_story():
     strength = data['strength']
     year = data['year']
 
-    prompt = f"Tell me a story about the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Write it in the style of two friends having a real conversation over a cigar."
+    prompt = f"Tell me a complete story about the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Write it in the style of two friends having a real conversation over a cigar. Keep it under 400 words and make sure the story has a proper ending."
 
     message = client.messages.create(
         model="claude-opus-4-6",
-        max_tokens=1024,
+        max_tokens=2048,
         messages=[
             {"role": "user", "content": prompt}
         ]
