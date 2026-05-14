@@ -56,6 +56,7 @@
             gap: 20px;
             justify-content: center;
             margin-bottom: 50px;
+            padding: 0 10px;
         }
 
         .cigar-card {
@@ -237,6 +238,53 @@
             color: #4a3420;
             font-size: 0.75rem;
             letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .cigar-card {
+                width: 160px;
+                padding: 18px 16px;
+            }
+
+            .cigar-name {
+                font-size: 1.1rem;
+            }
+
+            #story {
+                padding: 24px 20px;
+            }
+
+            #story p {
+                font-size: 0.95rem;
+            }
+
+            .affiliate-btn {
+                font-size: 0.75rem;
+                padding: 10px 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6rem;
+            }
+
+            .cigar-card {
+                width: 140px;
+                padding: 16px 12px;
+            }
+
+            .cigar-icon {
+                font-size: 1.5rem;
+            }
+
+            .cigar-name {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
