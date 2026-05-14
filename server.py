@@ -3,6 +3,7 @@ from flask_cors import CORS
 import anthropic
 from dotenv import load_dotenv
 import os
+import re
 
 load_dotenv()
 
@@ -33,7 +34,16 @@ def get_story():
         ]
     )
 
-    return jsonify({"story": message.content[0].text})
+    story = message.content[0].text
+    story = story.replace('**', '')
+    story = story.replace('# ', '')
+    story = story.replace('---', '')
+    story = story.replace('*', '')
+    story = re.sub(r'^[A-Z][^\n]*\n', '', story).strip()
+    return jsonify({"story": story})
+
+    
+    
 
 if __name__ == '__main__':
     app.run(port=8080)
