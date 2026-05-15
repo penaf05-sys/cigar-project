@@ -4,11 +4,19 @@ import anthropic
 from dotenv import load_dotenv
 import os
 import re
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 load_dotenv()
 
 app = Flask(__name__, static_folder='.', static_url_path='')
 CORS(app, resources={r"/*": {"origins": "*"}})
+
+limiter = Limiter(
+    get_remote_address,
+    app=app,
+    default_limits=["200 per day", "50 per hour"]
+)
 
 @app.route('/')
 def index():
@@ -17,6 +25,7 @@ def index():
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 @app.route('/story', methods=['POST'])
+@limiter.limit("10 per minute")
 def get_story():
     data = request.json
     name = data['name']
@@ -43,9 +52,6 @@ def get_story():
     paragraphs = [p.strip() for p in story.split('\n') if p.strip()]
     formatted = ''.join(f'<p>{p}</p>' for p in paragraphs)
     return jsonify({"story": formatted})
-
-    
-    
 
 if __name__ == '__main__':
     app.run(port=8080)
