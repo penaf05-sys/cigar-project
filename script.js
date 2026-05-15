@@ -8,7 +8,7 @@
 `        ;
          document.getElementById('story').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
-        const response = await fetch('http://localhost:8080/story', {
+        const response = await fetch('/story', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({name, origin, strength, year})
@@ -28,6 +28,7 @@
                 <div class="profile-grid">
                     <div class="profile-item">
                         <div class="profile-label">Origin</div>
+
                         <div class="profile-value">${origin}</div>
                     </div>
                     <div class="profile-item">
