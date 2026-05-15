@@ -138,15 +138,18 @@
             z-index: 1;
         }
 
-        .cigar-card.active {
+       .cigar-card.active {
             background: #2a1a0e;
             z-index: 2;
+            border-color: #8b6840;
         }
 
+        .cigar-card.active .cigar-label { color: #6b4c2a; }
         .cigar-card.active .cigar-name { color: #f0deb0; }
-        .cigar-card.active .cigar-origin { color: #b89a6a; }
-        .cigar-card.active .cigar-year { color: #8b6840; }
-        .cigar-card.active .strength-badge { border-color: #8b6840; color: #b89a6a; }
+        .cigar-card.active .cigar-origin { color: #a07850; }
+        .cigar-card.active .cigar-year { color: #6b4c2a; }
+        .cigar-card.active .strength-badge { border-color: #6b4c2a; color: #a07850; }
+        .cigar-card.active .cigar-img { filter: sepia(40%) brightness(0.7); }
 
         .cigar-label {
             font-family: 'Special Elite', cursive;
