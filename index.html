@@ -4,423 +4,447 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conversations Over Cigars</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Special+Elite&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lato:wght@300;400&display=swap');
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: #1a1008;
-            background-image: radial-gradient(ellipse at top, #2c1a0e 0%, #1a1008 60%);
-            color: #e8d5b0;
-            font-family: 'Lato', sans-serif;
+            background-color: #f5efe0;
+            background-image: 
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            color: #2a1a0e;
+            font-family: 'Crimson Text', serif;
             min-height: 100vh;
-            padding: 40px 20px;
         }
 
-        header {
+        .page-border {
+            border: 1px solid #b89a6a;
+            margin: 16px;
+            min-height: calc(100vh - 32px);
+            padding: 0 0 60px;
+        }
+
+        .masthead {
+            border-bottom: 3px double #8b6840;
+            padding: 32px 40px 24px;
             text-align: center;
-            margin-bottom: 50px;
+            position: relative;
         }
 
-        header h1 {
+        .masthead-top {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            color: #8b6840;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .masthead h1 {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            color: #c9a84c;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(201, 168, 76, 0.3);
-        }
-
-        header p {
-            margin-top: 10px;
-            font-size: 1rem;
-            color: #a08060;
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1a0f07;
             letter-spacing: 1px;
-            font-weight: 300;
+            line-height: 1;
+            margin-bottom: 10px;
         }
 
-        .divider {
+        .masthead-rule {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin: 12px 0;
+        }
+
+        .masthead-rule span {
+            height: 1px;
             width: 80px;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #c9a84c, transparent);
-            margin: 16px auto 0;
+            background: #8b6840;
+            display: block;
+        }
+
+        .masthead-rule em {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 1rem;
+            color: #8b6840;
+        }
+
+        .masthead-sub {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: #8b6840;
+            text-transform: uppercase;
+        }
+
+        .section-header {
+            text-align: center;
+            padding: 28px 40px 20px;
+            border-bottom: 1px solid #c9aa7a;
+        }
+
+        .section-header h2 {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #8b6840;
+            margin-bottom: 6px;
+        }
+
+        .section-header p {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 1.1rem;
+            color: #5a3e28;
         }
 
         .cigar-grid {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 0;
+            padding: 24px 32px;
             justify-content: center;
-            margin-bottom: 50px;
-            padding: 0 10px;
         }
 
         .cigar-card {
-            background: linear-gradient(145deg, #2c1a0e, #1f1208);
-            border: 1px solid #3d2410;
-            border-radius: 12px;
-            padding: 24px 28px;
-            width: 220px;
+            width: 180px;
+            padding: 0;
             cursor: pointer;
-            transition: all 0.3s ease;
             text-align: center;
+            border: 1px solid #c9aa7a;
+            margin: -1px 0 0 -1px;
+            background: #f5efe0;
+            transition: background 0.2s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .cigar-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 2px;
-            background: linear-gradient(to right, transparent, #c9a84c, transparent);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+        .cigar-img {
+            width: 100%;
+            height: 140px;
+            min-height: 140px;
+            object-fit: cover;
+            display: block;
+            filter: sepia(20%);
+            transition: filter 0.3s ease;
+        }
+
+        .cigar-card:hover .cigar-img {
+            filter: sepia(0%);
+        }
+
+        .cigar-card-body {
+            padding: 20px 14px;
         }
 
         .cigar-card:hover {
-            border-color: #c9a84c;
-            transform: translateY(-4px);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.5), 0 0 20px rgba(201,168,76,0.1);
-        }
-
-        .cigar-card:hover::before {
-            opacity: 1;
+            background: #ede4ce;
+            z-index: 1;
         }
 
         .cigar-card.active {
-            border-color: #c9a84c;
-            box-shadow: 0 0 25px rgba(201,168,76,0.2);
+            background: #2a1a0e;
+            z-index: 2;
         }
 
-        .cigar-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+        .cigar-card.active .cigar-name { color: #f0deb0; }
+        .cigar-card.active .cigar-origin { color: #b89a6a; }
+        .cigar-card.active .cigar-year { color: #8b6840; }
+        .cigar-card.active .strength-badge { border-color: #8b6840; color: #b89a6a; }
+
+        .cigar-label {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.55rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8b6840;
+            margin-bottom: 8px;
+            margin-top: 8px;
         }
 
         .cigar-name {
             font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: #c9a84c;
-            margin-bottom: 8px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #1a0f07;
+            margin-bottom: 6px;
+            line-height: 1.2;
         }
 
-        .cigar-meta {
-            font-size: 0.78rem;
-            color: #7a5c3a;
-            line-height: 1.8;
-            letter-spacing: 0.5px;
+        .cigar-origin {
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #6b4c2a;
+            margin-bottom: 4px;
         }
 
-        .cigar-meta span {
-            display: block;
+        .cigar-year {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem;
+            color: #8b6840;
+            margin-bottom: 10px;
         }
 
         .strength-badge {
             display: inline-block;
-            margin-top: 10px;
-            padding: 3px 12px;
-            border-radius: 20px;
-            font-size: 0.7rem;
-            letter-spacing: 1px;
+            border: 1px solid #b89a6a;
+            padding: 2px 10px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
             text-transform: uppercase;
-            font-weight: 400;
-        }
-
-        .strength-Full {
-            background: rgba(180, 60, 30, 0.2);
-            color: #c96040;
-            border: 1px solid rgba(180, 60, 30, 0.3);
-        }
-
-        .strength-Medium {
-            background: rgba(180, 130, 40, 0.2);
-            color: #c9a84c;
-            border: 1px solid rgba(180, 130, 40, 0.3);
-        }
-
-        .strength-Mild {
-            background: rgba(80, 160, 80, 0.2);
-            color: #70c070;
-            border: 1px solid rgba(80, 160, 80, 0.3);
+            color: #5a3e28;
         }
 
         .story-section {
-            max-width: 780px;
-            margin: 0 auto;
+            margin: 0 32px;
+            border: 1px solid #c9aa7a;
+            border-top: 3px double #8b6840;
         }
 
-        .story-label {
-            font-family: 'Playfair Display', serif;
-            font-size: 0.85rem;
-            color: #7a5c3a;
-            letter-spacing: 3px;
-            text-transform: uppercase;
-            margin-bottom: 16px;
+        .story-header {
+            padding: 16px 32px;
+            border-bottom: 1px solid #c9aa7a;
             text-align: center;
+            background: #ede4ce;
         }
 
-        #story {
-            background: linear-gradient(145deg, #221408, #1a1008);
-            border: 1px solid #3d2410;
-            border-radius: 12px;
-            padding: 36px 40px;
-            min-height: 180px;
+        .story-header h2 {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #8b6840;
+        }
+
+        .story-body {
+            padding: 36px 60px;
+            min-height: 200px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
-        #story::before {
-            content: '"';
-            position: absolute;
-            top: 10px;
-            left: 20px;
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            color: rgba(201, 168, 76, 0.08);
-            line-height: 1;
-        }
-
-        #story p {
-            font-size: 1.05rem;
+        .story-body p {
+            font-family: 'Crimson Text', serif;
+            font-size: 1.2rem;
             line-height: 1.9;
-            color: #c8b090;
-            font-weight: 300;
+            color: #2a1a0e;
             font-style: italic;
-            text-align: center;
+            text-align: justify;
             max-width: 680px;
+            column-count: 1;
         }
 
-        #story p.loading {
-            color: #7a5c3a;
+        .story-body p.loading {
             font-style: normal;
-            letter-spacing: 1px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8b6840;
             animation: pulse 1.5s ease-in-out infinite;
         }
 
         @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
+            0%, 100% { opacity: 0.4; }
             50% { opacity: 1; }
         }
 
         .affiliate-btn {
             display: inline-block;
-            margin-top: 24px;
-            padding: 12px 32px;
+            margin-top: 28px;
+            padding: 10px 32px;
+            border: 1px solid #2a1a0e;
             background: transparent;
-            border: 1px solid #c9a84c;
-            border-radius: 30px;
-            color: #c9a84c;
-            font-family: 'Lato', sans-serif;
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
             text-transform: uppercase;
+            color: #2a1a0e;
             text-decoration: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
         }
 
         .affiliate-btn:hover {
-            background: #c9a84c;
-            color: #1a1008;
+            background: #2a1a0e;
+            color: #f5efe0;
         }
 
-        footer {
+        .page-footer {
             text-align: center;
-            margin-top: 60px;
-            color: #4a3420;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
+            padding: 24px;
+            border-top: 3px double #8b6840;
+            margin: 40px 32px 0;
+        }
+
+        .page-footer p {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.6rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8b6840;
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 2rem;
-            }
-
-            .cigar-card {
-                width: 160px;
-                padding: 18px 16px;
-            }
-
-            .cigar-name {
-                font-size: 1.1rem;
-            }
-
-            #story {
-                padding: 24px 20px;
-            }
-
-            #story p {
-                font-size: 0.95rem;
-            }
-
-            .affiliate-btn {
-                font-size: 0.75rem;
-                padding: 10px 24px;
-            }
+            .masthead h1 { font-size: 2.5rem; }
+            .cigar-card { width: 160px; }
+            .story-body { padding: 24px 20px; }
+            .story-body p { font-size: 1.05rem; }
+            .page-border { margin: 8px; }
         }
 
         @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.6rem;
-            }
-
-            .cigar-card {
-                width: 140px;
-                padding: 16px 12px;
-            }
-
-            .cigar-icon {
-                font-size: 1.5rem;
-            }
-
-            .cigar-name {
-                font-size: 1rem;
-            }
+            .masthead h1 { font-size: 1.8rem; }
+            .cigar-card { width: 140px; padding: 16px 10px; }
+            .cigar-grid { padding: 16px; }
         }
     </style>
 </head>
 <body>
+<div class="page-border">
 
-    <header>
-        <h1>Conversations Over Cigars</h1>
-        <p>Select a cigar and let the story begin.</p>
-        <div class="divider"></div>
+    <header class="masthead">
+        <div class="masthead-top">Est. Santiago de los Caballeros &nbsp;·&nbsp; República Dominicana</div>
+        <h1>Conversations<br>Over Cigars</h1>
+        <div class="masthead-rule">
+            <span></span>
+            <em>Where every smoke tells a story</em>
+            <span></span>
+        </div>
+        <div class="masthead-sub">Select a cigar &nbsp;·&nbsp; Hear its story &nbsp;·&nbsp; Light one up</div>
     </header>
 
+    <div class="section-header">
+        <h2>The Collection</h2>
+        <p>Finest cigars from the Caribbean & Central America</p>
+    </div>
+
     <div class="cigar-grid">
+
         <div class="cigar-card" onclick="getStory('Cohiba', 'Cuba', 'Full', 1966, 'https://www.famous-smoke.com/cohiba-cigars', this)">
-            <div class="cigar-icon">🍂</div>
-            <div class="cigar-name">Cohiba</div>
-            <div class="cigar-meta">
-                <span>🌍 Cuba</span>
-                <span>📅 Since 1966</span>
+            <img src="images/cohiba.jpg" alt="Cohiba" class="cigar-img">
+            <div class="cigar-card-body" style="margin-top: -20px;">
+                <div class="cigar-label">No. 1</div>
+                <div class="cigar-name">Cohiba</div>
+                <div class="cigar-origin">Havana, Cuba</div>
+                <div class="cigar-year">Est. 1966</div>
+                <span class="strength-badge">Full</span>
             </div>
-            <span class="strength-badge strength-Full">Full Body</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('Montecristo', 'Dominican Republic', 'Medium', 1935, 'https://www.famous-smoke.com/montecristo-cigars', this)">
-            <div class="cigar-icon">⚔️</div>
+            <img src="images/montecristo.jpg" alt="Montecristo" class="cigar-img">
+            <div class="cigar-label">No. 2</div>
             <div class="cigar-name">Montecristo</div>
-            <div class="cigar-meta">
-                <span>🌍 Dominican Republic</span>
-                <span>📅 Since 1935</span>
-            </div>
-            <span class="strength-badge strength-Medium">Medium Body</span>
+            <div class="cigar-origin">Dominican Republic</div>
+            <div class="cigar-year">Est. 1935</div>
+            <span class="strength-badge">Medium</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('La Aurora', 'Dominican Republic', 'Medium', 1903, 'https://www.famous-smoke.com/la-aurora-cigars', this)">
-            <div class="cigar-icon">🌅</div>
+            <img src="images/la-aurora.jpg" alt="La Aurora" class="cigar-img">
+            <div class="cigar-label">No. 3</div>
             <div class="cigar-name">La Aurora</div>
-            <div class="cigar-meta">
-                <span>🌍 Dominican Republic</span>
-                <span>📅 Since 1903</span>
-            </div>
-            <span class="strength-badge strength-Medium">Medium Body</span>
+            <div class="cigar-origin">Dominican Republic</div>
+            <div class="cigar-year">Est. 1903</div>
+            <span class="strength-badge">Medium</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('Arturo Fuente', 'Dominican Republic', 'Medium', 1912, 'https://www.famous-smoke.com/arturo-fuente-cigars', this)">
-            <div class="cigar-icon">👑</div>
+            <img src="images/arturo-fuente.jpg" alt="Arturo Fuente" class="cigar-img">
+            <div class="cigar-label">No. 4</div>
             <div class="cigar-name">Arturo Fuente</div>
-            <div class="cigar-meta">
-                <span>🌍 Dominican Republic</span>
-                <span>📅 Since 1912</span>
-            </div>
-            <span class="strength-badge strength-Medium">Medium Body</span>
+            <div class="cigar-origin">Dominican Republic</div>
+            <div class="cigar-year">Est. 1912</div>
+            <span class="strength-badge">Medium</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('Padron', 'Nicaragua', 'Full', 1964, 'https://www.famous-smoke.com/padron-cigars', this)">
-            <div class="cigar-icon">🏔️</div>
+            <img src="images/padron.jpg" alt="Padron" class="cigar-img">
+            <div class="cigar-label">No. 5</div>
             <div class="cigar-name">Padron</div>
-            <div class="cigar-meta">
-                <span>🌍 Nicaragua</span>
-                <span>📅 Since 1964</span>
-            </div>
-            <span class="strength-badge strength-Full">Full Body</span>
+            <div class="cigar-origin">Estelí, Nicaragua</div>
+            <div class="cigar-year">Est. 1964</div>
+            <span class="strength-badge">Full</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('Romeo y Julieta', 'Dominican Republic', 'Mild', 1875, 'https://www.famous-smoke.com/romeo-y-julieta-cigars', this)">
-            <div class="cigar-icon">🌹</div>
+            <img src="images/romeo-julieta.jpg" alt="Romeo y Julieta" class="cigar-img">
+            <div class="cigar-label">No. 6</div>
             <div class="cigar-name">Romeo y Julieta</div>
-            <div class="cigar-meta">
-                <span>🌍 Dominican Republic</span>
-                <span>📅 Since 1875</span>
-            </div>
-            <span class="strength-badge strength-Mild">Mild Body</span>
+            <div class="cigar-origin">Dominican Republic</div>
+            <div class="cigar-year">Est. 1875</div>
+            <span class="strength-badge">Mild</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('Oliva Serie V', 'Nicaragua', 'Full', 1886, 'https://www.famous-smoke.com/oliva-cigars', this)">
-            <div class="cigar-icon">🌋</div>
+            <img src="images/oliva.jpg" alt="Olivia Serie V" class="cigar-img">
+            <div class="cigar-label">No. 7</div>
             <div class="cigar-name">Oliva Serie V</div>
-            <div class="cigar-meta">
-                <span>🌍 Nicaragua</span>
-                <span>📅 Since 1886</span>
-            </div>
-            <span class="strength-badge strength-Full">Full Body</span>
+            <div class="cigar-origin">Estelí, Nicaragua</div>
+            <div class="cigar-year">Est. 1886</div>
+            <span class="strength-badge">Full</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('Macanudo Cafe', 'Dominican Republic', 'Mild', 1868, 'https://www.famous-smoke.com/macanudo-cigars', this)">
-            <div class="cigar-icon">☕</div>
+            <img src="images/macanudo.jpg" alt="Macanudo" class="cigar-img">
+            <div class="cigar-label">No. 8</div>
             <div class="cigar-name">Macanudo Café</div>
-            <div class="cigar-meta">
-                <span>🌍 Dominican Republic</span>
-                <span>📅 Since 1868</span>
-            </div>
-            <span class="strength-badge strength-Mild">Mild Body</span>
+            <div class="cigar-origin">Dominican Republic</div>
+            <div class="cigar-year">Est. 1868</div>
+            <span class="strength-badge">Mild</span>
         </div>
 
         <div class="cigar-card" onclick="getStory('AJ Fernandez Last Call', 'Nicaragua', 'Full', 2015, 'https://www.famous-smoke.com/aj-fernandez-cigars', this)">
-            <div class="cigar-icon">🌙</div>
-            <div class="cigar-name">AJ Fernandez Last Call</div>
-            <div class="cigar-meta">
-                <span>🌍 Nicaragua</span>
-                <span>📅 Since 2015</span>
-            </div>
-            <span class="strength-badge strength-Full">Full Body</span>
+            <img src="images/aj-fernandez.jpg" alt="AJ Fernandez" class="cigar-img">
+            <div class="cigar-label">No. 9</div>
+            <div class="cigar-name">AJ Fernandez</div>
+            <div class="cigar-origin">Estelí, Nicaragua</div>
+            <div class="cigar-year">Est. 2015</div>
+            <span class="strength-badge">Full</span>
         </div>
+
     </div>
 
-    
-    
     <div class="story-section">
-        <div class="story-label">✦ Your Story ✦</div>
-        <div id="story">
-            <p>Choose a cigar above to begin your story...</p>
+        <div class="story-header">
+            <h2>The Story</h2>
+        </div>
+        <div class="story-body" id="story">
+            <p>Select a cigar from the collection above to begin your story...</p>
         </div>
     </div>
 
-    <footer>
-        <p>Conversations Over Cigars &nbsp;·&nbsp; Every smoke tells a story</p>
+    <footer class="page-footer">
+        <p>Conversations Over Cigars &nbsp;·&nbsp; Est. Santiago de los Caballeros &nbsp;·&nbsp; Every smoke tells a story</p>
     </footer>
 
-    <script>
-        async function getStory(name, origin, strength, year, affiliateUrl, cardEl) {
-            document.querySelectorAll('.cigar-card').forEach(c => c.classList.remove('active'));
-            if (cardEl) cardEl.classList.add('active');
+</div>
 
-            document.getElementById('story').innerHTML = '<p class="loading">Lighting your cigar...</p>';
-
-            const response = await fetch('http://localhost:8080/story', {
-                method: 'POST',
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({name, origin, strength, year})
-            });
-
-            const data = await response.json();
-            document.getElementById('story').innerHTML = `
-                <p>${data.story}</p>
-                <a class="affiliate-btn" href="${affiliateUrl}" target="_blank">Shop ${name} →</a>
-            `;
-        }
-    </script>
-
+<script>
+    async function getStory(name, origin, strength, year, affiliateUrl, cardEl) {
+        document.querySelectorAll('.cigar-card').forEach(c => c.classList.remove('active'));
+        if (cardEl) cardEl.classList.add('active');
+        document.getElementById('story').innerHTML = '<p class="loading">Rolling your story...</p>';
+        const response = await fetch('http://localhost:8080/story', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({name, origin, strength, year})
+        });
+        const data = await response.json();
+        document.getElementById('story').innerHTML = `
+            <p>${data.story}</p>
+            <a class="affiliate-btn" href="${affiliateUrl}" target="_blank">Shop ${name} &rarr;</a>
+        `;
+    }
+</script>
 </body>
 </html>
