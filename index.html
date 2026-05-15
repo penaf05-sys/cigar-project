@@ -263,6 +263,31 @@
             animation: pulse 1.5s ease-in-out infinite;
         }
 
+        .story-title-block {
+            text-align: center;
+            padding: 24px 0 16px;
+            border-bottom: 1px solid #c9aa7a;
+            margin-bottom: 28px;
+            width: 100%;
+        }
+
+        .story-cigar-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1a0f07;
+            letter-spacing: 1px;
+        }
+
+        .story-cigar-meta {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8b6840;
+            margin-top: 8px;
+        }
+        
         @keyframes pulse {
             0%, 100% { opacity: 0.4; }
             50% { opacity: 1; }
@@ -443,7 +468,10 @@
     async function getStory(name, origin, strength, year, affiliateUrl, imgFile, cardEl) {
         document.querySelectorAll('.cigar-card').forEach(c => c.classList.remove('active'));
         if (cardEl) cardEl.classList.add('active');
-        document.getElementById('story').innerHTML = '<p class="loading">Rolling your story...</p>';
+        document.getElementById('story').innerHTML = `
+            <img src="images/${imgFile}" alt="${name}" class="story-img">
+            <p class="loading">Rolling your story...</p>
+`        ;
         const response = await fetch('http://localhost:8080/story', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
@@ -452,6 +480,10 @@
         const data = await response.json();
        document.getElementById('story').innerHTML = `
             <img src="images/${imgFile}" alt="${name}" class="story-img">
+             <div class="story-title-block">
+                <div class="story-cigar-name">${name}</div>
+                <div class="story-cigar-meta">${origin} &nbsp;·&nbsp; Est. ${year}</div>
+            </div>
             <p>${data.story}</p>
             <a class="affiliate-btn" href="${affiliateUrl}" target="_blank">Shop ${name} &rarr;</a>
         `;
