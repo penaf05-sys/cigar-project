@@ -230,17 +230,18 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-start;
         }
 
-        .story-body p {
+       .story-body p {
             font-family: 'Crimson Text', serif;
             font-size: 1.2rem;
             line-height: 1.9;
             color: #2a1a0e;
             font-style: italic;
-            text-align: justify;
-            max-width: 680px;
+            text-align: left;
+            max-width: 780px;
+            width: 100%;
             column-count: 1;
         }
 

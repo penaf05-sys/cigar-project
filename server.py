@@ -40,7 +40,9 @@ def get_story():
     story = story.replace('---', '')
     story = story.replace('*', '')
     story = re.sub(r'^[A-Z][^\n]*\n', '', story).strip()
-    return jsonify({"story": story})
+    paragraphs = [p.strip() for p in story.split('\n') if p.strip()]
+    formatted = ''.join(f'<p>{p}</p>' for p in paragraphs)
+    return jsonify({"story": formatted})
 
     
     
