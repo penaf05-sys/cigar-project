@@ -206,8 +206,18 @@
             margin: 0 32px;
             border: 1px solid #c9aa7a;
             border-top: 3px double #8b6840;
+            overflow: hidden;
         }
 
+        .story-img {
+            width: 100%;
+            max-height: 500px;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            margin-bottom: 32px;
+            filter: sepia(15%);
+        }
         .story-header {
             padding: 16px 32px;
             border-bottom: 1px solid #c9aa7a;
@@ -329,7 +339,7 @@
 
     <div class="cigar-grid">
 
-        <div class="cigar-card" onclick="getStory('Cohiba', 'Cuba', 'Full', 1966, 'https://www.famous-smoke.com/cohiba-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Cohiba', 'Cuba', 'Full', 1966, 'https://www.famous-smoke.com/cohiba-cigars', 'cohiba.jpg', this)">
             <img src="images/cohiba.jpg" alt="Cohiba" class="cigar-img">
             <div class="cigar-card-body" style="margin-top: -20px;">
                 <div class="cigar-label">No. 1</div>
@@ -340,7 +350,7 @@
             </div>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Montecristo', 'Dominican Republic', 'Medium', 1935, 'https://www.famous-smoke.com/montecristo-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Montecristo', 'Dominican Republic', 'Medium', 1935, 'https://www.famous-smoke.com/montecristo-cigars', 'montecristo.jpg', this)">
             <img src="images/montecristo.jpg" alt="Montecristo" class="cigar-img">
             <div class="cigar-label">No. 2</div>
             <div class="cigar-name">Montecristo</div>
@@ -349,7 +359,7 @@
             <span class="strength-badge">Medium</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('La Aurora', 'Dominican Republic', 'Medium', 1903, 'https://www.famous-smoke.com/la-aurora-cigars', this)">
+        <div class="cigar-card" onclick="getStory('La Aurora', 'Dominican Republic', 'Medium', 1903, 'https://www.famous-smoke.com/la-aurora-cigars', 'la-aurora.jpg', this)">
             <img src="images/la-aurora.jpg" alt="La Aurora" class="cigar-img">
             <div class="cigar-label">No. 3</div>
             <div class="cigar-name">La Aurora</div>
@@ -358,7 +368,7 @@
             <span class="strength-badge">Medium</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Arturo Fuente', 'Dominican Republic', 'Medium', 1912, 'https://www.famous-smoke.com/arturo-fuente-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Arturo Fuente', 'Dominican Republic', 'Medium', 1912, 'https://www.famous-smoke.com/arturo-fuente-cigars', 'arturo-fuente.jpg', this)">
             <img src="images/arturo-fuente.jpg" alt="Arturo Fuente" class="cigar-img">
             <div class="cigar-label">No. 4</div>
             <div class="cigar-name">Arturo Fuente</div>
@@ -367,7 +377,7 @@
             <span class="strength-badge">Medium</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Padron', 'Nicaragua', 'Full', 1964, 'https://www.famous-smoke.com/padron-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Padron', 'Nicaragua', 'Full', 1964, 'https://www.famous-smoke.com/padron-cigars', 'padron.jpg', this)">
             <img src="images/padron.jpg" alt="Padron" class="cigar-img">
             <div class="cigar-label">No. 5</div>
             <div class="cigar-name">Padron</div>
@@ -376,7 +386,7 @@
             <span class="strength-badge">Full</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Romeo y Julieta', 'Dominican Republic', 'Mild', 1875, 'https://www.famous-smoke.com/romeo-y-julieta-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Romeo y Julieta', 'Dominican Republic', 'Mild', 1875, 'https://www.famous-smoke.com/romeo-y-julieta-cigars', 'romeo-julieta.jpg', this)">
             <img src="images/romeo-julieta.jpg" alt="Romeo y Julieta" class="cigar-img">
             <div class="cigar-label">No. 6</div>
             <div class="cigar-name">Romeo y Julieta</div>
@@ -385,7 +395,7 @@
             <span class="strength-badge">Mild</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Oliva Serie V', 'Nicaragua', 'Full', 1886, 'https://www.famous-smoke.com/oliva-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Oliva Serie V', 'Nicaragua', 'Full', 1886, 'https://www.famous-smoke.com/oliva-cigars', 'oliva.jpg', this)">
             <img src="images/oliva.jpg" alt="Olivia Serie V" class="cigar-img">
             <div class="cigar-label">No. 7</div>
             <div class="cigar-name">Oliva Serie V</div>
@@ -394,7 +404,7 @@
             <span class="strength-badge">Full</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('Macanudo Cafe', 'Dominican Republic', 'Mild', 1868, 'https://www.famous-smoke.com/macanudo-cigars', this)">
+        <div class="cigar-card" onclick="getStory('Macanudo Cafe', 'Dominican Republic', 'Mild', 1868, 'https://www.famous-smoke.com/macanudo-cigars', 'macanudo.jpg', this)">
             <img src="images/macanudo.jpg" alt="Macanudo" class="cigar-img">
             <div class="cigar-label">No. 8</div>
             <div class="cigar-name">Macanudo Café</div>
@@ -403,7 +413,7 @@
             <span class="strength-badge">Mild</span>
         </div>
 
-        <div class="cigar-card" onclick="getStory('AJ Fernandez Last Call', 'Nicaragua', 'Full', 2015, 'https://www.famous-smoke.com/aj-fernandez-cigars', this)">
+        <div class="cigar-card" onclick="getStory('AJ Fernandez Last Call', 'Nicaragua', 'Full', 2015, 'https://www.famous-smoke.com/aj-fernandez-cigars', 'aj-fernandez.jpg', this)">
             <img src="images/aj-fernandez.jpg" alt="AJ Fernandez" class="cigar-img">
             <div class="cigar-label">No. 9</div>
             <div class="cigar-name">AJ Fernandez</div>
@@ -430,7 +440,7 @@
 </div>
 
 <script>
-    async function getStory(name, origin, strength, year, affiliateUrl, cardEl) {
+    async function getStory(name, origin, strength, year, affiliateUrl, imgFile, cardEl) {
         document.querySelectorAll('.cigar-card').forEach(c => c.classList.remove('active'));
         if (cardEl) cardEl.classList.add('active');
         document.getElementById('story').innerHTML = '<p class="loading">Rolling your story...</p>';
@@ -440,7 +450,8 @@
             body: JSON.stringify({name, origin, strength, year})
         });
         const data = await response.json();
-        document.getElementById('story').innerHTML = `
+       document.getElementById('story').innerHTML = `
+            <img src="images/${imgFile}" alt="${name}" class="story-img">
             <p>${data.story}</p>
             <a class="affiliate-btn" href="${affiliateUrl}" target="_blank">Shop ${name} &rarr;</a>
         `;
