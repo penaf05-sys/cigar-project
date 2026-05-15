@@ -323,6 +323,77 @@
             color: #8b6840;
         }
 
+.profile-card {
+            width: 100%;
+            max-width: 780px;
+            border: 1px solid #c9aa7a;
+            border-top: 3px double #8b6840;
+            margin: 40px 0 20px;
+            padding: 28px 36px;
+            background: #ede4ce;
+        }
+
+        .profile-card-title {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #8b6840;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #c9aa7a;
+            padding-bottom: 20px;
+        }
+
+        .profile-item {
+            text-align: center;
+        }
+
+        .profile-label {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.55rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #8b6840;
+            margin-bottom: 6px;
+        }
+
+        .profile-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1a0f07;
+        }
+
+        .profile-flavors {
+            text-align: center;
+            padding-top: 16px;
+        }
+
+        .flavor-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            justify-content: center;
+            margin-top: 10px;
+        }
+
+        .flavor-tag {
+            border: 1px solid #b89a6a;
+            padding: 4px 14px;
+            font-family: 'Crimson Text', serif;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: #5a3e28;
+        }
+
         @media (max-width: 768px) {
             .masthead h1 { font-size: 2.5rem; }
             .cigar-card { width: 160px; }
