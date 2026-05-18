@@ -38,7 +38,7 @@ def get_story():
 
 # First-person immersive prompt (live on site)
 prompt = f"Write an immersive first-person story about smoking the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. You are speaking directly to the reader — they are the one holding it, cutting it, lighting it. Use 'you' throughout. Make them feel the setting, the ritual, the taste, the moment. Write it like they are living it right now. Make it emotional, sensory, and cinematic. Keep it under 400 words with a proper ending that leaves them wanting to light one up."
-    message = client.messages.create(
+message = client.messages.create(
         model="claude-opus-4-6",
         max_tokens=2048,
         messages=[
