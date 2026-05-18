@@ -33,7 +33,11 @@ def get_story():
     strength = data['strength']
     year = data['year']
 
-    prompt = f"Tell me a complete story about the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Write it in the style of two friends having a real conversation over a cigar. Keep it under 400 words and make sure the story has a proper ending."
+    # Original two-friends conversation style prompt (saved for animation script)
+# prompt = f"Tell me a complete story about the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Write it in the style of two friends having a real conversation over a cigar. Keep it under 400 words and make sure the story has a proper ending."
+
+# First-person immersive prompt (live on site)
+prompt = f"Write an immersive first-person story about smoking the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Put the reader directly in the experience — they are the one holding it, cutting it, lighting it. Make them feel the setting, the ritual, the taste, the moment. Write it like they are living it right now. Make it emotional, sensory, and cinematic. Keep it under 400 words with a proper ending that leaves them wanting to light one up."
 
     message = client.messages.create(
         model="claude-opus-4-6",
