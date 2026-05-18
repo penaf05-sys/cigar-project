@@ -394,16 +394,26 @@
             color: #5a3e28;
         }
 
-        @media (max-width: 768px) {
-            .masthead h1 { font-size: 2.5rem; }
-            .cigar-card { width: 160px; }
-            .story-body { padding: 24px 20px; }
-            .story-body p { font-size: 1.05rem; }
-            .page-border { margin: 8px; }
-        }
+      @media (max-width: 768px) {
+    .masthead { padding: 24px 20px 18px; }
+    .masthead h1 { font-size: 2.5rem; }
+    .cigar-grid { padding: 16px; gap: 0; }
+    .cigar-card { width: 160px; }
+    .story-body { padding: 24px 20px; }
+    .story-body p { font-size: 1.05rem; }
+    .page-border { margin: 8px; }
+    .story-section { margin: 0 8px; }
+    .profile-grid { grid-template-columns: repeat(2, 1fr); }
+    .profile-card { padding: 20px 16px; }
+    }
 
-        @media (max-width: 480px) {
-            .masthead h1 { font-size: 1.8rem; }
-            .cigar-card { width: 140px; padding: 16px 10px; }
-            .cigar-grid { padding: 16px; }
-        }
+      @media (max-width: 480px) {
+    .masthead h1 { font-size: 1.8rem; }
+    .cigar-card { width: calc(50% + 1px); }
+    .cigar-grid { padding: 16px 8px; }
+    .story-body { padding: 20px 16px; }
+    .story-cigar-name { font-size: 1.4rem; }
+    .profile-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .profile-value { font-size: 0.9rem; }
+    .profile-label { font-size: 0.5rem; }
+    }
