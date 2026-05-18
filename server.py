@@ -1,3 +1,4 @@
+cat > ~/Documents/cigar-project/server.py << 'EOF'
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import anthropic
@@ -33,12 +34,13 @@ def get_story():
     strength = data['strength']
     year = data['year']
 
-# Original two-friends conversation style prompt (saved for animation script)
-# prompt = f"Tell me a complete story about the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Write it in the style of two friends having a real conversation over a cigar. Keep it under 400 words and make sure the story has a proper ending."
+    # Original two-friends conversation style prompt (saved for animation script)
+    # prompt = f"Tell me a complete story about the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. Write it in the style of two friends having a real conversation over a cigar. Keep it under 400 words and make sure the story has a proper ending."
 
-# First-person immersive prompt (live on site)
-prompt = f"Write an immersive first-person story about smoking the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. You are speaking directly to the reader — they are the one holding it, cutting it, lighting it. Use 'you' throughout. Make them feel the setting, the ritual, the taste, the moment. Write it like they are living it right now. Make it emotional, sensory, and cinematic. Keep it under 400 words with a proper ending that leaves them wanting to light one up."
-message = client.messages.create(
+    # First-person immersive prompt (live on site)
+    prompt = f"Write an immersive first-person story about smoking the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. You are speaking directly to the reader — they are the one holding it, cutting it, lighting it. Use 'you' throughout. Make them feel the setting, the ritual, the taste, the moment. Write it like they are living it right now. Make it emotional, sensory, and cinematic. Keep it under 400 words with a proper ending that leaves them wanting to light one up."
+
+    message = client.messages.create(
         model="claude-opus-4-6",
         max_tokens=2048,
         messages=[
@@ -59,3 +61,4 @@ message = client.messages.create(
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
+EOF
