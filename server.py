@@ -1,4 +1,3 @@
-cat > ~/Documents/cigar-project/server.py << 'EOF'
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 import anthropic
@@ -61,4 +60,3 @@ def get_story():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
     app.run(host='0.0.0.0', port=port)
-EOF
