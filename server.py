@@ -56,7 +56,7 @@ def get_story():
     return jsonify({"story": formatted, "plain_text": story})
 
 @app.route('/voiceover', methods=['POST'])
-@limiter.limit("5 per minute")
+
 def get_voiceover():
     try:
         data = request.json
