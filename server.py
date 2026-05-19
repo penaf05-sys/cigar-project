@@ -59,9 +59,10 @@ def get_story():
 def get_voiceover():
     data = request.json
     text = data['text']
-
+    
     api_key = os.getenv("ELEVENLABS_API_KEY")
-    voice_id = "pNInz6obpgDQGcFmaJgB"
+    print("API KEY:", api_key[:10] if api_key else "MISSING")
+    print("TEXT LENGTH:", len(text) if text else "EMPTY")
 
     url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
 
