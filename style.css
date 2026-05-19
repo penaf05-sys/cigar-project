@@ -417,3 +417,27 @@
     .profile-value { font-size: 0.9rem; }
     .profile-label { font-size: 0.5rem; }
     }
+
+    .voiceover-btn {
+    display: block;
+    margin: 20px auto;
+    padding: 12px 28px;
+    background: transparent;
+    border: 1px solid #c9a96e;
+    color: #c9a96e;
+    font-family: inherit;
+    font-size: 0.95rem;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.voiceover-btn:hover {
+    background: #c9a96e;
+    color: #000;
+}
+
+.voiceover-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
