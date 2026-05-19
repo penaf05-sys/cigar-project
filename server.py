@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 import os
 import re
 import requests
+import base64
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
@@ -57,39 +58,43 @@ def get_story():
 @app.route('/voiceover', methods=['POST'])
 @limiter.limit("5 per minute")
 def get_voiceover():
-    data = request.json
-    text = data['text']
-    
-    api_key = os.getenv("ELEVENLABS_API_KEY")
-    voice_id = "pNInz6obpgDQGcFmaJgB"
-    print("API KEY:", api_key[:10] if api_key else "MISSING")
-    print("TEXT LENGTH:", len(text) if text else "EMPTY")
+    try:
+        data = request.json
+        text = data['text']
 
-    url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
+        api_key = os.getenv("ELEVENLABS_API_KEY")
+        voice_id = "pNInz6obpgDQGcFmaJgB"
+        print("API KEY:", api_key[:10] if api_key else "MISSING")
+        print("TEXT LENGTH:", len(text) if text else "EMPTY")
 
-    headers = {
-        "xi-api-key": api_key,
-        "Content-Type": "application/json"
-    }
+        url = f"https://api.elevenlabs.io/v1/text-to-speech/{voice_id}"
 
-    payload = {
-        "text": text,
-        "model_id": "eleven_turbo_v2_5",
-        "voice_settings": {
-            "stability": 0.5,
-            "similarity_boost": 0.75
+        headers = {
+            "xi-api-key": api_key,
+            "Content-Type": "application/json"
         }
-    }
 
-    response = requests.post(url, json=payload, headers=headers)
+        payload = {
+            "text": text,
+            "model_id": "eleven_turbo_v2_5",
+            "voice_settings": {
+                "stability": 0.5,
+                "similarity_boost": 0.75
+            }
+        }
 
-    if response.status_code == 200:
-        import base64
-        audio_base64 = base64.b64encode(response.content).decode('utf-8')
-        return jsonify({"audio": audio_base64})
-    else:
-        print("ElevenLabs error:", response.status_code, response.text)
-        return jsonify({"error": response.text}), 500
+        response = requests.post(url, json=payload, headers=headers)
+
+        if response.status_code == 200:
+            audio_base64 = base64.b64encode(response.content).decode('utf-8')
+            return jsonify({"audio": audio_base64})
+        else:
+            print("ElevenLabs error:", response.status_code, response.text)
+            return jsonify({"error": response.text}), 500
+
+    except Exception as e:
+        print("VOICEOVER EXCEPTION:", str(e))
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 8080))
