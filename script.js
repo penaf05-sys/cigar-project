@@ -55,7 +55,19 @@ async function getStory(name, origin, strength, year, affiliateUrl, imgFile, fla
     `;
 }
 
+
+let currentAudio = null;
+
 async function playVoiceover(btn) {
+    // If audio is playing, stop it
+    if (currentAudio) {
+        currentAudio.pause();
+        currentAudio = null;
+        btn.textContent = '🎙️ Hear the Story';
+        btn.disabled = false;
+        return;
+    }
+
     const text = btn.getAttribute('data-text');
     btn.textContent = '⏳ Loading voice...';
     btn.disabled = true;
@@ -70,10 +82,12 @@ async function playVoiceover(btn) {
         const data = await response.json();
 
         if (data.audio) {
-            const audio = new Audio('data:audio/mpeg;base64,' + data.audio);
-            audio.play();
-            btn.textContent = '🔊 Playing...';
-            audio.onended = () => {
+            currentAudio = new Audio('data:audio/mpeg;base64,' + data.audio);
+            currentAudio.play();
+            btn.textContent = '⏹️ Stop';
+            btn.disabled = false;
+            currentAudio.onended = () => {
+                currentAudio = null;
                 btn.textContent = '🎙️ Hear the Story';
                 btn.disabled = false;
             };
