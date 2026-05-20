@@ -63,7 +63,7 @@ def get_voiceover():
         text = data['text']
 
         api_key = os.getenv("ELEVENLABS_API_KEY")
-        voice_id = "pNInz6obpgDQGcFmaJgB"
+        voice_id = "IRHApOXLvnW57QJPQH2P"
         print("API KEY:", api_key[:10] if api_key else "MISSING")
         print("TEXT LENGTH:", len(text) if text else "EMPTY")
 
