@@ -446,14 +446,17 @@
     margin: 0 32px;
     border: 1px solid #c9aa7a;
     border-top: none;
-    background: #2a1a0e;
+    background: #3d2314;
     padding: 60px 40px;
     text-align: center;
+    outline: 3px double #8b6840;
+    outline-offset: -12px;
 }
 
 .hero-inner {
     max-width: 780px;
     margin: 0 auto;
+    text-align: center;
 }
 
 .hero-label {
@@ -479,7 +482,7 @@
     font-style: italic;
     font-size: 1.15rem;
     line-height: 1.9;
-    color: #a07850;
+    color: #c9aa7a;
     max-width: 620px;
     margin: 0 auto 32px;
 }
@@ -517,4 +520,34 @@
     .hero-section { margin: 0 8px; padding: 40px 20px; }
     .hero-headline { font-size: 1.7rem; }
     .hero-stats { gap: 30px; }
+}
+
+.footer-socials {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin: 16px 0;
+}
+
+.footer-socials a {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #8b6840;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.footer-socials a:hover {
+    color: #2a1a0e;
+}
+
+.footer-copy {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.55rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #b89a6a;
+    margin-top: 8px;
 }
