@@ -64,7 +64,7 @@ async function playVoiceover(btn) {
         const response = await fetch('/voiceover', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({text})
+            body: JSON.stringify({text: text.substring(0, 2500)})
         });
 
         const data = await response.json();
