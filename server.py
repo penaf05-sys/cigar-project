@@ -35,7 +35,7 @@ def get_story():
     strength = data['strength']
     year = data['year']
 
-    prompt = f"Write an immersive first-person story about smoking the {name} cigar from {origin}, a {strength} bodied cigar founded in {year}. You are speaking directly to the reader — they are the one holding it, cutting it, lighting it. Use 'you' throughout. Make them feel the setting, the ritual, the taste, the moment. Write it like they are living it right now. Make it emotional, sensory, and cinematic. Keep it under 400 words with a proper ending that leaves them wanting to light one up."
+    prompt = f"Write a cinematic historical story about the {name} cigar brand from {origin}, founded in {year}. Tell the story of the people who built it, the land it came from, the tobacco leaves they grew, and the legacy they created. Focus entirely on the history — the founders, the region, the soil, the craftsmanship, and what makes this brand legendary. Do not reference smoking, tasting, or anything the reader would do with the cigar. This is purely the untold story behind the brand. Write it like a historian who loves great stories. Keep it under 400 words with a powerful ending."
 
     message = client.messages.create(
         model="claude-opus-4-6",
@@ -47,7 +47,7 @@ def get_story():
 
     story = message.content[0].text
     story = story.replace('**', '')
-    story = story.replace('# ', '')
+    story = re.sub(r'#+\s*', '', story)
     story = story.replace('---', '')
     story = story.replace('*', '')
     story = re.sub(r'^[A-Z][^\n]*\n', '', story).strip()

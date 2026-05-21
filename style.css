@@ -551,3 +551,13 @@
     color: #b89a6a;
     margin-top: 8px;
 }
+
+.disclaimer {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.5rem !important;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #b89a6a;
+    margin-top: 6px;
+    font-style: normal !important;
+}
