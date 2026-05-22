@@ -561,3 +561,26 @@
     margin-top: 6px;
     font-style: normal !important;
 }
+
+.disclosure-body {
+    max-width: 780px;
+    margin: 60px auto;
+    padding: 0 40px;
+}
+
+.disclosure-body h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #1a0f07;
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.disclosure-body p {
+    font-family: 'Crimson Text', serif;
+    font-size: 1.1rem;
+    line-height: 1.9;
+    color: #2a1a0e;
+    margin-bottom: 20px;
+}
