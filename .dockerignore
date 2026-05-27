@@ -1,0 +1,9 @@
+venv
+__pycache__
+*.pyc
+.env
+.git
+*.jpg
+*.png
+favicon_io
+loading.html

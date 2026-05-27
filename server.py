@@ -24,6 +24,10 @@ limiter = Limiter(
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/loading')
+def loading():
+    return app.send_static_file('loading.html')
+
 client = anthropic.Anthropic(api_key=os.getenv("ANTHROPIC_API_KEY"))
 
 @app.route('/story', methods=['POST'])

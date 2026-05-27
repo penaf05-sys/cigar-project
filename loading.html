@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cigar Vault — Loading</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Special+Elite&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: #2a1a0e;
+            color: #f0deb0;
+            font-family: 'Special Elite', cursive;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .vault-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #f0deb0;
+            text-align: center;
+            line-height: 1;
+            margin-bottom: 12px;
+        }
+
+        .vault-rule {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            justify-content: center;
+            margin: 16px 0;
+        }
+
+        .vault-rule span {
+            height: 1px;
+            width: 60px;
+            background: #8b6840;
+            display: block;
+        }
+
+        .vault-rule em {
+            font-family: 'Special Elite', cursive;
+            font-style: normal;
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #8b6840;
+        }
+
+        .loading-text {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: #8b6840;
+            margin-top: 32px;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        .loading-dots {
+            display: inline-block;
+        }
+
+        .border-wrap {
+            border: 1px solid #8b6840;
+            outline: 3px double #5a3e28;
+            outline-offset: -10px;
+            padding: 60px 80px;
+            text-align: center;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        @media (max-width: 480px) {
+            .vault-logo { font-size: 2.5rem; }
+            .border-wrap { padding: 40px 32px; }
+        }
+    </style>
+    <script>
+        // Check every 3 seconds if the app is ready
+        function checkReady() {
+            fetch('/story', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({name: 'test', origin: 'test', strength: 'test', year: '2000'})
+            })
+            .then(() => {
+                window.location.href = '/';
+            })
+            .catch(() => {
+                setTimeout(checkReady, 3000);
+            });
+        }
+        setTimeout(checkReady, 3000);
+    </script>
+</head>
+<body>
+    <div class="border-wrap">
+        <div class="vault-logo">Cigar<br>Vault</div>
+        <div class="vault-rule">
+            <span></span>
+            <em>Where every smoke tells a story</em>
+            <span></span>
+        </div>
+        <div class="loading-text">Opening the vault<span class="loading-dots">...</span></div>
+    </div>
+</body>
+</html>
