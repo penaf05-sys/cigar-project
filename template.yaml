@@ -14,6 +14,11 @@ Resources:
       PackageType: Image
       Architectures:
         - arm64
+      Environment:
+        Variables:
+          ANTHROPIC_API_KEY: '{{resolve:ssm:/cigar-vault/ANTHROPIC_API_KEY}}'
+          ELEVENLABS_API_KEY: '{{resolve:ssm:/cigar-vault/ELEVENLABS_API_KEY}}'
+          ELEVENLABS_VOICE_ID: '{{resolve:ssm:/cigar-vault/ELEVENLABS_VOICE_ID}}'
       Events:
         CigarVaultApi:
           Type: HttpApi
