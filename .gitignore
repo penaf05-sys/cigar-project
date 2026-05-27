@@ -1,1 +1,3 @@
 .env
+zappa_settings.json
+samconfig.toml
