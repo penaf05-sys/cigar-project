@@ -17,7 +17,7 @@ async function getStory(name, origin, strength, year, affiliateUrl, imgFile, fla
     const data = await response.json();
 
     document.getElementById('story').innerHTML = `
-        <img src="images/${imgFile}" alt="${name}" class="story-img">
+        <img src="https://cigar-vault-static.s3.us-east-2.amazonaws.com/images/${imgFile}" alt="${name}" class="story-img">
         <div class="story-title-block">
             <div class="story-cigar-name">${name}</div>
             <div class="story-cigar-meta">${origin} &nbsp;·&nbsp; Est. ${year}</div>
