@@ -30,6 +30,11 @@ Resources:
           Properties:
             Path: /
             Method: ANY
+        WarmUp:
+          Type: Schedule
+          Properties:
+            Schedule: rate(5 minutes)
+       
     Metadata:
       DockerTag: cigar-vault
       DockerContext: ./
