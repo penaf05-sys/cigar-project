@@ -52,6 +52,7 @@ async function getStory(name, origin, strength, year, affiliateUrl, imgFile, fla
             </div>
         </div>
         <a class="affiliate-btn" href="${affiliateUrl}" target="_blank">Shop ${name} &rarr;</a>
+        <a class="affiliate-btn" href="/accessories" target="_blank" style="margin-left:10px;">Shop Accessories &rarr;</a>
     `;
 }
 

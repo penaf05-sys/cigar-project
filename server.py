@@ -24,6 +24,10 @@ limiter = Limiter(
 def index():
     return app.send_static_file('index.html')
 
+@app.route('/accessories')
+def accessories():
+    return app.send_static_file('accessories.html')
+
 @app.route('/loading')
 def loading():
     return app.send_static_file('loading.html')

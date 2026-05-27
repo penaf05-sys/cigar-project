@@ -584,3 +584,89 @@
     color: #2a1a0e;
     margin-bottom: 20px;
 }
+
+.accessories-section {
+    margin: 0 32px;
+    padding: 40px 0;
+}
+
+.accessory-category {
+    margin-bottom: 48px;
+    border-bottom: 1px solid #c9aa7a;
+    padding-bottom: 40px;
+}
+
+.accessory-title {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.65rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8b6840;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.accessory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.accessory-card {
+    border: 1px solid #c9aa7a;
+    padding: 24px;
+    text-align: center;
+    text-decoration: none;
+    background: #f5efe0;
+    transition: background 0.2s ease;
+    display: block;
+}
+
+.accessory-card:hover {
+    background: #ede4ce;
+}
+
+.accessory-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #1a0f07;
+    margin-bottom: 10px;
+}
+
+.accessory-desc {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #5a3e28;
+    line-height: 1.6;
+    margin-bottom: 16px;
+}
+
+.accessory-btn {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.6rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #8b6840;
+    border: 1px solid #8b6840;
+    padding: 6px 16px;
+    display: inline-block;
+}
+
+.accessories-disclaimer {
+    font-family: 'Special Elite', cursive;
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #b89a6a;
+    text-align: center;
+    margin: 0 32px 20px;
+}
+
+@media (max-width: 768px) {
+    .accessory-grid { grid-template-columns: 1fr; }
+    .accessories-section { margin: 0 8px; }
+}

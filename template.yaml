@@ -1,0 +1,36 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Cigar Vault
+
+Globals:
+  Function:
+    Timeout: 30
+    MemorySize: 512
+
+Resources:
+  CigarVaultFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      PackageType: Image
+      Architectures:
+        - arm64
+      Events:
+        CigarVaultApi:
+          Type: HttpApi
+          Properties:
+            Path: /{proxy+}
+            Method: ANY
+        RootPath:
+          Type: HttpApi
+          Properties:
+            Path: /
+            Method: ANY
+    Metadata:
+      DockerTag: cigar-vault
+      DockerContext: ./
+      Dockerfile: Dockerfile
+
+Outputs:
+  CigarVaultApi:
+    Description: API Gateway endpoint URL
+    Value: !Sub "https://${ServerlessHttpApi}.execute-api.${AWS::Region}.amazonaws.com/"
